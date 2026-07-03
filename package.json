@@ -1,4 +1,10 @@
 {
+  "name": "trinity-pixel-hub-root",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm install --prefix trinity-pixel-hub && npm run build --prefix trinity-pixel-hub && node copy-build.js",
+    "vercel-build": "npm install --prefix trinity-pixel-hub && npm run build --prefix trinity-pixel-hub && node copy-build.js"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.1",
     "tailwindcss": "^4.3.1"

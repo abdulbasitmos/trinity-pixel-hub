@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+trinity-pixel-hub/node_modules/
+
+# Production build outputs
+dist/
+trinity-pixel-hub/dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Local Env Configurations
+.env
+.env.local
+.env.*.local
+
+# Editor Configurations
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
