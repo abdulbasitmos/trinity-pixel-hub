@@ -24,6 +24,15 @@ try {
     fs.rmSync(destination, { recursive: true, force: true });
   }
   copyFolderSync(source, destination);
+
+  // Copy vercel.json to root dist and source dist to ensure edge routing is fully initialized
+  const rootVercelJson = path.join(__dirname, 'vercel.json');
+  if (fs.existsSync(rootVercelJson)) {
+    fs.copyFileSync(rootVercelJson, path.join(destination, 'vercel.json'));
+    fs.copyFileSync(rootVercelJson, path.join(source, 'vercel.json'));
+    console.log('vercel.json successfully copied to output directories!');
+  }
+
   console.log('Build outputs successfully copied to root directory!');
 } catch (err) {
   console.error('Failed to copy build outputs:', err);
