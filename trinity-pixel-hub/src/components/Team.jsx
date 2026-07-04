@@ -298,6 +298,8 @@ export default function Team() {
               window.dispatchEvent(new PopStateEvent('popstate'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            rotatingPhotos={rotatingDataPhotos}
+            rotatingInterval={5000}
             stats={[
               ['BI', 'Reporting'],
               ['KPI', 'Tracking'],
