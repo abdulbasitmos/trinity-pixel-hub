@@ -10,6 +10,7 @@ import SectionKicker from './SectionKicker'
 import { X, Sparkles, Award, UserCheck, ShieldCheck } from 'lucide-react'
 
 const rotatingDesignPhotos = [designLeadPhotoA, designLeadPhotoB]
+const rotatingDataPhotos = [dataLeadPhoto, designLeadPhotoB]
 
 // Full Bios data structure
 const fullBios = {
@@ -68,36 +69,37 @@ const fullBios = {
   }
 }
 
-function RotatingDesignImage() {
+function RotatingImage({ photos, interval = 3000, alt = 'Rotating team photo' }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
+    if (!photos || photos.length <= 1) return;
     const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % rotatingDesignPhotos.length)
-    }, 5000)
+      setActiveIndex((current) => (current + 1) % photos.length)
+    }, interval)
 
     return () => window.clearInterval(timer)
-  }, [])
+  }, [photos, interval])
 
   return (
     <>
       <AnimatePresence mode="wait">
         <motion.img
           key={activeIndex}
-          src={rotatingDesignPhotos[activeIndex]}
-          alt="Head of Graphic and Logo Design department"
+          src={photos[activeIndex]}
+          alt={alt}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 0.85, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
         />
       </AnimatePresence>
-      <div className="absolute bottom-4 right-4 flex gap-1.5 z-10">
-        {rotatingDesignPhotos.map((_, index) => (
+      <div className="absolute bottom-4 right-4 flex gap-1 z-10">
+        {photos.map((_, index) => (
           <span
             key={index}
-            className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === index ? 'w-5 bg-white' : 'w-1.5 bg-white/40'}`}
+            className={`h-1 rounded-full transition-all duration-300 ${activeIndex === index ? 'w-4 bg-white' : 'w-1 bg-white/40'}`}
           />
         ))}
       </div>
@@ -114,7 +116,8 @@ function TeamCard({
   stats,
   bio,
   onOpenBio,
-  rotating = false,
+  rotatingPhotos = null,
+  rotatingInterval = 3000,
   imagePosition = 'object-[50%_18%]',
   index
 }) {
@@ -148,8 +151,8 @@ function TeamCard({
     >
       <div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-black">
-          {rotating ? (
-            <RotatingDesignImage />
+          {rotatingPhotos && rotatingPhotos.length > 1 ? (
+            <RotatingImage photos={rotatingPhotos} interval={rotatingInterval} alt={imageAlt} />
           ) : (
             <img
               src={image}
@@ -315,6 +318,8 @@ export default function Team() {
               window.dispatchEvent(new PopStateEvent('popstate'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            rotatingPhotos={rotatingDesignPhotos}
+            rotatingInterval={3000}
             stats={[
               ['Logo', 'Systems'],
               ['Flyer', 'Campaigns'],
