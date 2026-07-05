@@ -250,6 +250,11 @@ export default function HomeIntroduction() {
             </p>
           ))}
         </div>
+        <div className='mt-5 grid gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:grid-cols-2 lg:grid-cols-3'
+        >
+
+
+        </div>
 
         {/* Footer Signal Badge */}
         <div className="mt-6 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-6">

@@ -166,7 +166,7 @@ export default function About() {
                   <p className="text-[10px] font-bold uppercase tracking-wider text-white/60">Signature output</p>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-white/60">
-                  A complete creative package can include the logo, landing page, social visuals, motion edits, and analytics-ready launch reporting.
+                  so this not just an hub but a solutoin founder
                 </p>
               </div>
             </div>

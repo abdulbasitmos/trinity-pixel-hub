@@ -10,7 +10,6 @@ import SectionKicker from './SectionKicker'
 import { X, Sparkles, Award, UserCheck, ShieldCheck } from 'lucide-react'
 
 const rotatingDesignPhotos = [designLeadPhotoA, designLeadPhotoB]
-const rotatingDataPhotos = [dataLeadPhoto, designLeadPhotoB]
 
 // Full Bios data structure
 const fullBios = {
@@ -298,8 +297,6 @@ export default function Team() {
               window.dispatchEvent(new PopStateEvent('popstate'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            rotatingPhotos={rotatingDataPhotos}
-            rotatingInterval={5000}
             stats={[
               ['BI', 'Reporting'],
               ['KPI', 'Tracking'],
